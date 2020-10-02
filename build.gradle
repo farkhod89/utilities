@@ -1,0 +1,94 @@
+//buildscript {
+//    repositories {
+//        mavenLocal()
+//        mavenCentral()
+//        jcenter()
+//        maven { url 'https://jitpack.io' }
+//    }
+//}
+
+plugins {
+    id 'org.springframework.boot' version '2.3.4.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+//    id 'java'
+    //id 'maven'
+    id 'java-library'
+    id 'maven-publish'
+    //id 'application'
+}
+
+group 'uz.gigalab'
+version '1.0.2'
+sourceCompatibility = JavaVersion.VERSION_11
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    jcenter()
+//    maven { url 'https://jitpack.io' }
+}
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    testRuntimeOnly 'com.h2database:h2'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+test {
+    useJUnitPlatform()
+    exclude "**/*IT*", "**/*IntTest*"
+
+    testLogging {
+        events 'FAILED', 'SKIPPED'
+    }
+    // uncomment if the tests reports are not generated
+    // see https://github.com/jhipster/generator-jhipster/pull/2771 and https://github.com/jhipster/generator-jhipster/pull/4484
+    // ignoreFailures true
+    reports.html.enabled = false
+}
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/farkhod89/utilities")
+            credentials {
+                username = findProperty("gpr.user") ?: System.getenv("USERNAME")
+                password = findProperty("gpr.key") ?: System.getenv("TOKEN")
+            }
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+//            group 'uz.gigalab'
+//            version '1.0.2'
+//            groupId = 'uz.gigalab'
+//            artifact = 'utilities'
+//            version = '1.0.2'
+//            artifact bootJar
+
+
+            // Fixes the error with dynamic versions when using Spring Boot
+            versionMapping {
+                usage('java-api') {
+                    fromResolutionOf('runtimeClasspath')
+                }
+                usage('java-runtime') {
+                    fromResolutionResult()
+                }
+            }
+
+            from(components.java)
+        }
+    }
+
+}
