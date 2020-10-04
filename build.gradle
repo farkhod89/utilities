@@ -13,12 +13,12 @@ plugins {
     id 'java'
     //id 'maven'
 //    id 'java-library'
-//    id 'maven-publish'
+    id 'maven-publish'
     //id 'application'
 }
 
 group 'uz.gigalab'
-version '1.0.3'
+version '1.0.6'
 sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
@@ -27,13 +27,35 @@ repositories {
     jcenter()
     maven { url 'https://jitpack.io' }
 }
-dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    testRuntimeOnly 'com.h2database:h2'
-    testImplementation('org.springframework.boot:spring-boot-starter-test') {
-        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
     }
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter:2.3.4.RELEASE'
+    //implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    //implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // https://mvnrepository.com/artifact/org.springframework/spring-web
+    compile group: 'org.springframework', name: 'spring-web', version: '5.2.9.RELEASE'
+    // https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa
+    compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '2.3.4.RELEASE'
+    // https://mvnrepository.com/artifact/javax.persistence/javax.persistence-api
+    compile group: 'javax.persistence', name: 'javax.persistence-api', version: '2.2'
+
+
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.12'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
+
+    //testRuntimeOnly 'com.h2database:h2'
+//    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+//        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+//    }
 }
 
 test {
@@ -56,7 +78,6 @@ jar {
     enabled = true
 }
 
-/*
 publishing {
     repositories {
         maven {
@@ -79,18 +100,26 @@ publishing {
 
 
             // Fixes the error with dynamic versions when using Spring Boot
-            versionMapping {
-                usage('java-api') {
-                    fromResolutionOf('runtimeClasspath')
-                }
-                usage('java-runtime') {
-                    fromResolutionResult()
-                }
-            }
+//            versionMapping {
+//                usage('java-api') {
+//                    fromResolutionOf('runtimeClasspath')
+//                }
+//                usage('java-runtime') {
+//                    fromResolutionResult()
+//                }
+//            }
 
             from(components.java)
         }
     }
 
 }
-*/
+
+//compileJava {
+//    options.compilerArgs = [
+//        //'-Xlint:unchecked'
+////        '-Amapstruct.suppressGeneratorTimestamp=true',
+////        '-Amapstruct.suppressGeneratorVersionInfoComment=true',
+////        '-Amapstruct.unmappedTargetPolicy=IGNORE'
+//    ]
+//}
