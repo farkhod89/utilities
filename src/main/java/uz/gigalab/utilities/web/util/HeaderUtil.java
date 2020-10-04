@@ -1,13 +1,11 @@
 package uz.gigalab.utilities.web.util;
 
-import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpHeaders;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
-@Log4j2
 public final class HeaderUtil {
     private HeaderUtil() {
     }
@@ -40,7 +38,7 @@ public final class HeaderUtil {
     }
 
     public static HttpHeaders createFailureAlert(String applicationName, boolean enableTranslation, String entityName, String errorKey, String defaultMessage) {
-        log.error("Entity processing failed, {}", defaultMessage);
+        //log.error("Entity processing failed, {}", defaultMessage);
         String message = enableTranslation ? "error." + errorKey : defaultMessage;
         HttpHeaders headers = new HttpHeaders();
         headers.add("X-" + applicationName + "-error", message);

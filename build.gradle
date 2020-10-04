@@ -1,24 +1,18 @@
-//buildscript {
-//    repositories {
-//        mavenLocal()
-//        mavenCentral()
-//        jcenter()
-//        maven { url 'https://jitpack.io' }
-//    }
-//}
-
 plugins {
     //id 'org.springframework.boot' version '2.3.4.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    //id 'io.spring.dependency-management' version '1.0.10.RELEASE'
     id 'java'
+
+    id 'java-library'
+    id 'maven-publish'
+
     //id 'maven'
 //    id 'java-library'
-    id 'maven-publish'
     //id 'application'
 }
 
-group 'uz.gigalab'
-version '1.0.6'
+group 'uz.gigalab.utilities'
+version '1.0.8'
 sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
@@ -34,16 +28,16 @@ configurations {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter:2.3.4.RELEASE'
+    //implementation 'org.springframework.boot:spring-boot-starter:2.3.4.RELEASE'
     //implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     //implementation 'org.springframework.boot:spring-boot-starter-web'
 
     // https://mvnrepository.com/artifact/org.springframework/spring-web
-    compile group: 'org.springframework', name: 'spring-web', version: '5.2.9.RELEASE'
+    implementation group: 'org.springframework', name: 'spring-web', version: '5.2.9.RELEASE'
     // https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa
-    compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '2.3.4.RELEASE'
+    implementation group: 'org.springframework.data', name: 'spring-data-jpa', version: '2.3.4.RELEASE'
     // https://mvnrepository.com/artifact/javax.persistence/javax.persistence-api
-    compile group: 'javax.persistence', name: 'javax.persistence-api', version: '2.2'
+    implementation group: 'javax.persistence', name: 'javax.persistence-api', version: '2.2'
 
 
     compileOnly 'org.projectlombok:lombok:1.18.12'
