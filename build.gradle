@@ -12,13 +12,12 @@ plugins {
 }
 
 group 'uz.gigalab'
-version '1.0.10'
+version '1.0.15'
 sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
     mavenLocal()
     mavenCentral()
-    jcenter()
     maven { url 'https://jitpack.io' }
 }
 configurations {
@@ -37,11 +36,11 @@ dependencies {
     implementation 'javax.persistence:javax.persistence-api:2.2'
 
 
-    compileOnly 'org.projectlombok:lombok:1.18.12'
-    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
 
-    testCompileOnly 'org.projectlombok:lombok:1.18.12'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
+    testCompileOnly 'org.projectlombok:lombok:1.18.20'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.20'
 
     //testRuntimeOnly 'com.h2database:h2'
 //    testImplementation('org.springframework.boot:spring-boot-starter-test') {
@@ -106,11 +105,3 @@ publishing {
 
 }
 
-//compileJava {
-//    options.compilerArgs = [
-//        //'-Xlint:unchecked'
-////        '-Amapstruct.suppressGeneratorTimestamp=true',
-////        '-Amapstruct.suppressGeneratorVersionInfoComment=true',
-////        '-Amapstruct.unmappedTargetPolicy=IGNORE'
-//    ]
-//}
