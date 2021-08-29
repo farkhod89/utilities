@@ -21,4 +21,12 @@ public interface GigalabNotificationService {
      * @param serviceName название микро-сервиса
      */
     void sendTelegramUpStatus(String botToken, Long chatId, String serviceName);
+
+    /**
+     * Отправка в телеграм статуса при не успешном поднятие
+     *
+     * @param chatId      чат id группы
+     * @param serviceName название микро-сервиса
+     */
+    void sendTelegramFailedStatus(String botToken, Long chatId, String serviceName);
 }

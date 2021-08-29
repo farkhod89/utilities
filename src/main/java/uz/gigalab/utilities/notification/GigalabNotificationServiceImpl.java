@@ -19,7 +19,7 @@ public class GigalabNotificationServiceImpl implements GigalabNotificationServic
 
     @Override
     public void sendTelegramShutdownStatus(String botToken, Long chatId, String serviceName) {
-        String message = "SERVICE SHUTDOWN: " + serviceName;
+        String message = "**DOWN:** " + serviceName;
         try {
             sendMessage(botToken, chatId, message);
         } catch (Exception ignored) {
@@ -29,12 +29,23 @@ public class GigalabNotificationServiceImpl implements GigalabNotificationServic
 
     @Override
     public void sendTelegramUpStatus(String botToken, Long chatId, String serviceName) {
-        String message = "SERVICE UP: " + serviceName;
+        String message = "**UP:** " + serviceName;
         try {
             sendMessage(botToken, chatId, message);
         } catch (Exception ignored) {
         }
     }
+
+
+    @Override
+    public void sendTelegramFailedStatus(String botToken, Long chatId, String serviceName) {
+        String message = "**FAILED:** " + serviceName;
+        try {
+            sendMessage(botToken, chatId, message);
+        } catch (Exception ignored) {
+        }
+    }
+
 
     @SneakyThrows
     private void sendMessage(String botToken, Long chatId, String message) {
@@ -59,7 +70,6 @@ public class GigalabNotificationServiceImpl implements GigalabNotificationServic
         HttpResponse<String> response = client
             .send(request, HttpResponse.BodyHandlers.ofString());
     }
-
 }
 
 

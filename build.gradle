@@ -12,7 +12,7 @@ plugins {
 }
 
 group 'uz.gigalab'
-version '1.0.19'
+version '1.0.20'
 sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
