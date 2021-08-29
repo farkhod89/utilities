@@ -1,7 +1,6 @@
 package uz.gigalab.utilities.notification;
 
 import lombok.SneakyThrows;
-import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriBuilder;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -15,7 +14,6 @@ import java.time.Duration;
  * @author Farkhod Daniyarov <farkhod.daniyarov@gmail.com>
  * @since 29.08.2021
  */
-@Log4j2
 @Service
 public class GigalabNotificationServiceImpl implements GigalabNotificationService {
 
