@@ -19,7 +19,7 @@ public class GigalabNotificationServiceImpl implements GigalabNotificationServic
 
     @Override
     public void sendTelegramShutdownStatus(String botToken, Long chatId, String serviceName) {
-        String message = "**DOWN:** " + serviceName;
+        String message = "*DOWN:* " + serviceName;
         try {
             sendMessage(botToken, chatId, message);
         } catch (Exception ignored) {
@@ -29,7 +29,7 @@ public class GigalabNotificationServiceImpl implements GigalabNotificationServic
 
     @Override
     public void sendTelegramUpStatus(String botToken, Long chatId, String serviceName) {
-        String message = "**UP:** " + serviceName;
+        String message = "*UP:* " + serviceName;
         try {
             sendMessage(botToken, chatId, message);
         } catch (Exception ignored) {
@@ -39,7 +39,7 @@ public class GigalabNotificationServiceImpl implements GigalabNotificationServic
 
     @Override
     public void sendTelegramFailedStatus(String botToken, Long chatId, String serviceName) {
-        String message = "**FAILED:** " + serviceName;
+        String message = "*FAILED:* " + serviceName;
         try {
             sendMessage(botToken, chatId, message);
         } catch (Exception ignored) {
@@ -58,6 +58,7 @@ public class GigalabNotificationServiceImpl implements GigalabNotificationServic
         UriBuilder builder = UriComponentsBuilder
             .fromHttpUrl("https://api.telegram.org")
             .path("/{token}/sendMessage")
+            .queryParam("parse_mode", "Markdown")
             .queryParam("chat_id", chatId)
             .queryParam("text", message);
 
